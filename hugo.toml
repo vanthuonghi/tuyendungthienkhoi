@@ -1,0 +1,4 @@
+baseURL = 'https://tuyendungthienkhoi.pages.dev/'
+languageCode = 'vi-vn'
+title = 'Website của em Hỉ'
+theme = 'PaperMod'
