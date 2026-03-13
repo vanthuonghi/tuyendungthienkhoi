@@ -1,4 +1,39 @@
-baseURL = 'https://tuyendungthienkhoi.pages.dev/'
+# --- CẤU HÌNH CƠ BẢN ---
+baseURL = 'https://tuyendungthienkhoi.pages.dev/' # Sửa lại thành domain thật của em sau này
 languageCode = 'vi-vn'
-title = 'Website của em Hỉ'
+title = 'Tuyển dụng Thiên Khôi'
 theme = 'PaperMod'
+
+# --- THIẾT LẬP MENU ĐIỀU HƯỚNG ---
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Trang chủ"
+    url = "/"
+    weight = 10
+
+  [[menu.main]]
+    identifier = "posts"
+    name = "Kiến thức BĐS"
+    url = "/posts/"
+    weight = 20
+
+# --- TỐI ƯU GIAO DIỆN & SEO (PAPERMOD) ---
+[params]
+  env = "production"
+  description = "Chuyên trang tuyển dụng và đào tạo Môi giới Bất động sản Thiên Khôi."
+  author = "Văn Hỉ"
+  
+  # Hiển thị UI chuyên nghiệp
+  ShowBreadCrumbs = true      # Hiện thanh điều hướng (Home > Posts > Bài viết)
+  ShowPostNavLinks = true     # Nút bài trước/bài sau ở cuối bài
+  ShowReadingTime = true      # Hiện thời gian đọc
+  ShowShareButtons = true     # Nút chia sẻ mạng xã hội
+  ShowToc = true              # Hiện Mục lục bài viết (Table of Contents)
+  TocOpen = true              # Tự động mở mục lục
+
+  # Cấu hình danh sách bài viết (Blog list)
+  [params.cover]
+    hidden = false            # Hiện ảnh bìa bài viết
+    hiddenInList = false      # Hiện ảnh bìa ở trang danh sách
+    hiddenInSingle = false    # Hiện ảnh bìa ở trong bài viết
