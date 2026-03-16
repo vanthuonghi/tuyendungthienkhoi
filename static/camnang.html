@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Gia Nhập - Bất động sản Thiên Khôi</title>
+    <meta name="description" content="Chi tiết lộ trình, chính sách, thu nhập và công cụ hỗ trợ khi làm việc tại Tập đoàn Bất động sản Thiên Khôi cùng team Văn Hỉ.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Roboto Flex"', 'sans-serif'],
+                    },
+                    colors: {
+                        tk: {
+                            DEFAULT: '#da251d',
+                            dark: '#a81c15',
+                            light: '#ef4444',
+                            50: '#fef2f2',
+                        },
+                        accent: {
+                            DEFAULT: '#f59e0b',
+                            dark: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .page-header-bg {
+            background-image: linear-gradient(rgba(15, 0, 0, 0.8), rgba(15, 0, 0, 0.95)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* Hiệu ứng mờ nền cho thẻ nổi */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-tk selection:text-white">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="flex items-center gap-2">
+                        <div class="w-10 h-10 bg-tk rounded-lg flex items-center justify-center text-white shadow-lg shadow-tk/30">
+                            <i class="ph-bold ph-house-line text-2xl"></i>
+                        </div>
+                        <span class="font-extrabold text-2xl text-tk tracking-tight">THIÊN KHÔI</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="/posts/" class="text-gray-600 hover:text-tk font-medium transition-colors">KIẾN THỨC BĐS</a>
+                    <a href="/#ung-tuyen" class="bg-tk hover:bg-tk-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2">
+                        Ứng Tuyển Ngay <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-tk focus:outline-none p-2 bg-gray-50 rounded-lg">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="/posts/" class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-tk bg-gray-50 rounded-xl">Kiến thức Bất động sản</a>
+                <a href="/#ung-tuyen" class="block px-4 py-3 text-base font-bold text-white bg-tk rounded-xl text-center shadow-lg shadow-tk/30">Ứng Tuyển Ngay</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header-bg text-white py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-tk/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-accent/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full glass-panel text-accent font-bold text-sm tracking-wider mb-6 uppercase">
+                <i class="ph-fill ph-book-open-text text-lg"></i> Cẩm nang nội bộ
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+                Toàn Cảnh Bức Tranh Nghề <br class="hidden md:block"/> Môi Giới Tại <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-200">Thiên Khôi</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-3xl mx-auto">
+                Hỉ tổng hợp chi tiết lộ trình, chính sách và đặc quyền dành cho bạn. Khám phá bệ phóng công nghệ giúp bạn bắt đầu từ con số 0 đến thu nhập bứt phá.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-16 h-16 bg-tk-50 text-tk rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-tk group-hover:text-white transition-colors duration-300 shadow-inner">
+                            <i class="ph-fill ph-handshake text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">Mô Hình Hoạt Động <br/>& Văn Hóa</h2>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Môi trường hợp tác:</strong> Đề cao sự bình đẳng, không quan hệ chủ - tớ. Thu nhập dựa trên hiệu quả chốt giao dịch.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Tự do linh hoạt:</strong> Làm chủ thời gian, không điểm danh, chủ động sắp xếp lịch trình cá nhân.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Mạng lưới rộng khắp:</strong> Sở hữu hệ thống trụ sở phủ khắp các quận. Tự do làm việc tại nơi gần nhất.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Tiện ích trọn vẹn:</strong> Văn phòng máy lạnh, wifi mạnh, phục vụ đồ ăn nhẹ miễn phí. Giảm giá thức uống khi đeo thẻ.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-900 p-8 md:p-10 rounded-3xl shadow-2xl hover:shadow-[0_20px_50px_rgba(218,37,29,0.2)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group border border-gray-800">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-tk opacity-20 rounded-bl-full blur-2xl group-hover:opacity-40 transition-opacity"></div>
+                    
+                    <div class="flex items-center gap-5 mb-8 relative z-10">
+                        <div class="w-16 h-16 bg-gradient-to-br from-accent to-yellow-600 text-gray-900 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-accent/30">
+                            <i class="ph-fill ph-currency-circle-dollar text-4xl"></i>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white leading-tight">Thu Nhập & <br/><span class="text-accent">Quyền Lợi Tài Chính</span></h2>
+                    </div>
+                    <ul class="space-y-6 relative z-10">
+                        <li class="flex items-start">
+                            <div class="bg-white/10 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-star text-accent"></i></div>
+                            <span class="text-gray-300 leading-relaxed"><strong class="text-white">Hoa hồng 3%:</strong> Chuyên viên nhận ngay 1.1%. <br/><i class="text-gray-400">Ví dụ: Chốt nhà 5 tỷ thu về 51 triệu; nhà 20 tỷ thu về 210 triệu.</i></span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-white/10 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-star text-accent"></i></div>
+                            <span class="text-gray-300 leading-relaxed"><strong class="text-white">Mức tối thiểu:</strong> Với nhà dưới 3 tỷ, hoa hồng thấp nhất bạn cầm về là <strong class="text-accent text-lg">35,5 triệu đồng.</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-white/10 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-lightning text-accent"></i></div>
+                            <span class="text-gray-300 leading-relaxed"><strong class="text-white">Nhận tiền thần tốc:</strong> Hoa hồng trả thẳng bằng tiền mặt trong vòng 24h sau khi chốt cọc. Không trừ thuế TNCN tại nguồn.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-white/10 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-plus text-accent"></i></div>
+                            <span class="text-gray-300 leading-relaxed"><strong class="text-white">Gia tăng thu nhập:</strong> Kiếm thêm từ việc giới thiệu nhân sự, tư vấn pháp lý, hoàn công hay kết nối nội thất.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                            <i class="ph-fill ph-graduation-cap text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">Quy Trình Đào Tạo <br/>Thực Chiến</h2>
+                    </div>
+                    
+                    <div class="relative pl-6 space-y-8 before:absolute before:inset-0 before:ml-[0.8rem] before:-translate-x-px md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-200 before:to-transparent">
+                        <div class="relative">
+                            <div class="absolute left-[-2rem] mt-1.5 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-50"></div>
+                            <h4 class="text-lg font-bold text-gray-900">Khóa học nền tảng</h4>
+                            <p class="text-gray-600 mt-1 leading-relaxed">Gồm 4 buổi/tuần. Nắm vững văn hóa, quyền lợi, pháp lý và thao tác ứng dụng.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute left-[-2rem] mt-1.5 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-50"></div>
+                            <h4 class="text-lg font-bold text-gray-900">Học & Thi sát hạch</h4>
+                            <p class="text-gray-600 mt-1 leading-relaxed">Học trực tiếp kết hợp App. Thi trắc nghiệm trên điện thoại (đạt 35/50 câu) để ra nghề.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute left-[-2rem] mt-1.5 w-4 h-4 rounded-full bg-blue-500 ring-4 ring-blue-50"></div>
+                            <h4 class="text-lg font-bold text-gray-900">Cầm tay chỉ việc</h4>
+                            <p class="text-gray-600 mt-1 leading-relaxed">Đội trưởng, trưởng phòng hỗ trợ trực tiếp. Dẫn khách, đàm phán chốt nhà hoàn toàn miễn phí.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 md:p-10 rounded-3xl shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-16 h-16 bg-white text-indigo-600 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
+                            <i class="ph-fill ph-device-mobile text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">Công Nghệ & <br/>Nguồn Hàng Bất Tận</h2>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="bg-white p-4 rounded-2xl shadow-sm border border-white/50">
+                            <strong class="text-gray-900 flex items-center gap-2 mb-1"><i class="ph-fill ph-database text-indigo-500 text-xl"></i> App Độc quyền</strong>
+                            <p class="text-gray-600 text-sm leading-relaxed">Nắm trong tay kho 50.000+ căn nhà. Đầy đủ hình ảnh, sổ đỏ, thông số và SĐT đầu chủ.</p>
+                        </li>
+                        <li class="bg-white p-4 rounded-2xl shadow-sm border border-white/50">
+                            <strong class="text-gray-900 flex items-center gap-2 mb-1"><i class="ph-fill ph-lock-key-open text-indigo-500 text-xl"></i> Lộ trình mở rổ hàng</strong>
+                            <p class="text-gray-600 text-sm leading-relaxed">Bắt đầu khai thác 5 quận lân cận. Chốt từ 4 căn sẽ mở khóa rổ hàng toàn thành phố.</p>
+                        </li>
+                        <li class="bg-white p-4 rounded-2xl shadow-sm border border-white/50">
+                            <strong class="text-gray-900 flex items-center gap-2 mb-1"><i class="ph-fill ph-megaphone text-indigo-500 text-xl"></i> Hỗ trợ Marketing</strong>
+                            <p class="text-gray-600 text-sm leading-relaxed">Tài trợ 90% phí đăng tin (batdongsan.com, chotot...). Khai thác khách từ hội nhóm FB độc quyền.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
+                            <i class="ph-fill ph-trend-up text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">Lộ Trình Thăng Tiến <br/>Rõ Ràng</h2>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-green-600"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Nâng cấp chuyên môn:</strong> Liên tục đào tạo pháp lý chuyên sâu, kỹ năng "chốt nhà triệu đô".</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-green-600"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Không đợi thâm niên:</strong> Năng lực chốt số quyết định vị trí. Từ Chuyên viên lên Trưởng phòng, Giám đốc cực kỳ minh bạch.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-green-600"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Đặc quyền Đầu chủ:</strong> Sau khi chốt đủ chỉ tiêu, bạn được quyền săn nguồn hàng và làm việc trực tiếp với chủ nhà.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-16 h-16 bg-red-50 text-tk rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-tk group-hover:text-white transition-colors duration-300">
+                            <i class="ph-fill ph-heart text-3xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 leading-tight">Giá Trị Đạo Đức <br/>& Triết Lý Team</h2>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Làm nghề bằng cái tâm:</strong> Team Văn Hỉ - Văn Huấn tập trung xây dựng đội ngũ tử tế. Không ép giá, làm đúng chính sách công ty.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Kết nối giới thượng lưu:</strong> Mở rộng mối quan hệ với những người thành đạt. Học hỏi tư duy làm giàu và tạo cơ hội đầu tư.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-gray-100 p-1.5 rounded-full mr-4 mt-1 shrink-0"><i class="ph-bold ph-check text-tk"></i></div>
+                            <span class="text-gray-600 leading-relaxed"><strong class="text-gray-900">Sản phẩm an toàn:</strong> Chỉ tập trung bán nhà phố pháp lý chuẩn, sổ hồng riêng. Bảo vệ tuyệt đối uy tín của bạn.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-900 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-tk/20 blur-[120px] opacity-40"></div>
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 text-accent backdrop-blur-md border border-white/20">
+                <i class="ph-fill ph-rocket-launch text-4xl"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Bạn Đã Sẵn Sàng Bứt Phá Cùng Hỉ?</h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed">
+                Hệ thống vững chắc, công cụ đầy đủ, người dẫn đường tận tâm. Việc duy nhất của bạn lúc này là ra quyết định.
+            </p>
+            <a href="/#ung-tuyen" class="inline-flex items-center gap-3 bg-accent hover:bg-amber-400 text-gray-900 font-bold text-xl py-5 px-10 rounded-2xl transition-all shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:shadow-[0_0_50px_rgba(245,158,11,0.7)] transform hover:-translate-y-1">
+                Đăng Ký Ứng Tuyển Ngay <i class="ph-bold ph-paper-plane-tilt"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-950 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <div class="lg:col-span-1">
+                    <h4 class="text-white font-bold text-lg mb-6 uppercase tracking-wider flex items-center gap-2">
+                        <i class="ph-fill ph-house-line text-tk"></i> Tập đoàn Thiên Khôi
+                    </h4>
+                    <p class="text-sm leading-relaxed mb-4">
+                        Nơi hội tụ tinh hoa Bất động sản. Môi trường đào tạo Môi giới uy tín với kho hàng khổng lồ và cơ chế tuyệt vời.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-tk hover:text-white transition-colors">
+                            <i class="ph-fill ph-facebook-logo text-xl"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-tk hover:text-white transition-colors">
+                            <i class="ph-fill ph-youtube-logo text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2">
+                    <h4 class="text-white font-bold text-lg mb-6 uppercase tracking-wider">Hệ thống Trụ sở</h4>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Hội sở miền Nam:</strong> DD1 Bạch Mã, phường Hòa Hưng, TP.HCM</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Thủ Đức:</strong> 301A Võ Văn Ngân, phường Linh Chiểu, TP. Thủ Đức</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Gò Vấp:</strong> Lầu 1-2-3, 108 Đường số 1, KDC Cityland, phường Gò Vấp</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Tân Phú:</strong> Lầu 1, 19 Thoại Ngọc Hầu, phường Phú Thọ Hòa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Nam Sài Gòn:</strong> Lầu 1-2-3, 48 Đường số 14, KDC Him Lam, phường Tân Hưng</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Bình Tân:</strong> Khu Tên Lửa, Lầu 1-2, 2-4 Đường số 2, phường An Lạc</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 12 (1):</strong> 279 Nguyễn Thị Búp, phường Hiệp Thành</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 12 (2):</strong> Số 10-12 Đường N1, KDC Hiệp Thành, phường Hiệp Thành</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Tân Bình:</strong> 1073/4B Cách Mạng Tháng 8, phường Tân Sơn Nhất</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 8:</strong> 191 Nguyễn Thị Mười, phường Chánh Hưng</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 9:</strong> 147 Liên Phường, phường Phước Long, TP. Thủ Đức</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Bình Chánh:</strong> Số 129 Đường số 1, KDC Vĩnh Lộc, xã Vĩnh Lộc</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Tân Bình – Quận 12:</strong> 181–183 Nguyễn Sỹ Sách, phường Tân Sơn Nhất</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 11:</strong> 32 Đường số 4, Cư xá Bình Thới, phường Bình Thới</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Nhà Bè:</strong> Số 2 đường B13, KDC Zeit River County 1, Nguyễn Hữu Thọ, xã Phước Kiển</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Quận 4:</strong> 13–15 Đường số 10A, phường Vĩnh Hội</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Tây Sài Gòn:</strong> 37 Lê Thúc Hoạch, phường Phú Thọ Hòa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Hiệp Bình Chánh:</strong> Số 8, Đường số 1, Khu phố 7, phường Hiệp Bình</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Đông Sài Gòn:</strong> 300L Nguyễn Văn Đậu, phường Bình Thạnh</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Hiệp Bình:</strong> 47 Hiệp Bình, phường Hiệp Bình</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph-fill ph-map-pin text-tk mt-0.5 mr-2 shrink-0"></i> 
+                            <span class="leading-relaxed"><strong class="text-gray-200">Trụ sở Long Phước:</strong> 1503–1505 Nguyễn Duy Trinh, phường Long Phước, TP. Thủ Đức</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <h4 class="text-white font-bold text-lg mb-6 uppercase tracking-wider">Liên kết nhanh</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/" class="hover:text-white transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-tk"></i> Về Thiên Khôi</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-tk"></i> Kho hàng 50.000+ căn</a></li>
+                        <li><a href="/#ung-tuyen" class="hover:text-white transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-tk"></i> Ứng tuyển Môi giới</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center gap-2"><i class="ph-bold ph-caret-right text-tk"></i> Đăng tin trên Bannha888</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2026 Bất động sản Thiên Khôi. Nội dung thiết kế tối ưu chuyển đổi.</p>
+                <p class="mt-2 md:mt-0 font-bold text-tk-light">THIÊN KHÔI - SỐ 1 VỀ THỔ CƯ</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
