@@ -3,286 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nội dung Đào tạo B1 - Tập đoàn Thiên Khôi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Đào tạo B1 - Tập đoàn Thiên Khôi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #1a5276; /* Xanh ngọc lục bảo đậm / Xanh dương chuẩn doanh nghiệp */
-            --secondary-color: #cb4335; /* Đỏ đô điểm nhấn */
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
+            --primary: #0B2447; /* Xanh Navy đậm */
+            --primary-light: #19376D;
+            --secondary: #C81E1E; /* Đỏ doanh nghiệp */
+            --bg-body: #F5F7F8;
+            --bg-card: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 20px rgba(11, 36, 71, 0.08);
+            --shadow-hover: 0 15px 30px rgba(11, 36, 71, 0.15);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Header Styles */
+        /* Glassmorphism Sticky Header */
         header {
-            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 36, 71, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
-            padding: 40px 20px;
+            padding: 20px;
             text-align: center;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            border-bottom: 3px solid var(--secondary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
         }
 
         header p {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 0.95rem;
+            color: #A5D7E8;
+            font-weight: 300;
         }
 
-        /* Section Titles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Section Styling */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
         .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--secondary-color);
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
             display: inline-block;
-            margin-bottom: 25px;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
+            font-weight: 700;
         }
 
-        /* Card Styles */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Grid Layout cho Card */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card Modern Design */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 25px 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 5px solid var(--primary-color);
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            border-top: 5px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-light), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-top-color: var(--primary);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(200, 30, 30, 0.1);
+            color: var(--secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--secondary);
+            color: white;
         }
 
         .card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
-        .card h3 i {
-            color: var(--secondary-color);
-        }
-
-        /* Lists */
+        /* Nội dung bên trong Card */
         ul {
-            padding-left: 20px;
-            margin-bottom: 0;
+            list-style: none;
+            padding-left: 0;
         }
 
         li {
-            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        li::before {
+            content: '\f101'; /* FontAwesome angle-double-right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
         strong {
-            color: #2c3e50;
+            color: var(--primary-light);
+            font-weight: 600;
         }
 
-        /* Badge/Highlight */
         .highlight {
-            background-color: #fcf3f2;
-            color: var(--secondary-color);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.95rem;
+            background: rgba(11, 36, 71, 0.08);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        /* Animation Classes (được JS kích hoạt) */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .animate-up.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Footer */
         footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
             text-align: center;
-            padding: 30px;
-            color: #7f8c8d;
+            padding: 30px 20px;
+            margin-top: 50px;
             font-size: 0.9rem;
-            margin-top: 40px;
-            border-top: 1px solid #ddd;
         }
 
-        /* Responsive */
+        footer i {
+            color: var(--secondary);
+        }
+
+        /* Responsive Design cho Điện thoại */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr; /* 1 cột trên mobile */
+                gap: 20px;
             }
             .card {
                 padding: 20px;
+            }
+            .container {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Đào Tạo B1 - Tập Đoàn Thiên Khôi</h1>
-        <p>Tài liệu chuyển ngữ nội dung huấn luyện và định hướng phát triển</p>
+    <header id="header">
+        <h1>Đào Tạo B1 - Thiên Khôi</h1>
+        <p>Tài liệu chuyển ngữ nội dung huấn luyện & định hướng</p>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Phần 1: Nội quy & Định hướng ban đầu</h2>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-clipboard-list"></i> 1. Nội quy và hướng dẫn ban đầu tại hội trường</h3>
-            <p>Trước khi bắt đầu, trợ lý hướng dẫn học viên về cách sử dụng ghế mới tại hội trường để tránh làm hỏng, đồng thời nhắc nhở việc giữ gìn vệ sinh, bỏ vỏ chai nước đúng nơi quy định.</p>
-            <p><strong>Học viên cần lưu ý về việc sử dụng 2 ứng dụng (app) của tập đoàn:</strong></p>
-            <ul>
-                <li><span class="highlight">App màu trắng:</span> Dùng để điểm danh và xem nguồn hàng sau khi lên chuyên viên.</li>
-                <li><span class="highlight">App màu đỏ:</span> Dùng để tham gia các khóa học online và thực hiện các chuyên đề trong tuần học viện.</li>
-            </ul>
-            <p><strong>Về quy định thẻ ra vào:</strong></p>
-            <ul>
-                <li><strong>Thẻ học viên:</strong> Được phát vào đầu giờ, học viên phải mang theo để vào tòa nhà; nếu mất hoặc quên sẽ không được vào.</li>
-                <li><strong>Thẻ khách:</strong> Dùng trong trường hợp quên thẻ học viên, yêu cầu để lại CCCD và phải trả lại thẻ khi ra về.</li>
-            </ul>
+        
+        <div class="section-header animate-up">
+            <h2 class="section-title">Phần 1: Nội quy & Định hướng</h2>
         </div>
 
-        <div class="card">
-            <h3><i class="fa-solid fa-building"></i> 2. Tiện ích và quy định sinh hoạt</h3>
-            <ul>
-                <li><strong>Địa điểm:</strong> Buổi đào tạo diễn ra tại hội trường lầu 1 và lầu 2.</li>
-                <li><strong>Ăn uống:</strong> Tập đoàn có nhà hàng Thiên Khôi tại lầu 8. Học viên có thẻ hợp lệ được giảm giá suất ăn từ 60.000đ xuống còn 40.000đ. Học viên cần dọn dẹp sau khi ăn và tuân thủ quy trình lấy cơm bằng voucher.</li>
-                <li><strong>Quy định chung:</strong> Tuyệt đối không hút thuốc và không mang thức ăn có mùi vào hội trường máy lạnh (kể cả nhà vệ sinh). Trong lúc đào tạo, học viên phải chuyển điện thoại sang chế độ im lặng.</li>
-            </ul>
+        <div class="card-grid">
+            <div class="card animate-up" style="transition-delay: 0.1s;">
+                <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <h3>1. Nội quy & Hướng dẫn hội trường</h3>
+                <p>Giữ gìn vệ sinh, bảo quản cơ sở vật chất và bỏ rác đúng quy định.</p>
+                <ul>
+                    <li><span class="highlight">App màu trắng:</span> Điểm danh & xem nguồn hàng khi lên Chuyên viên.</li>
+                    <li><span class="highlight">App màu đỏ:</span> Học online & làm bài tập chuyên đề.</li>
+                    <li><strong>Thẻ học viên:</strong> Bắt buộc mang theo để vào tòa nhà.</li>
+                    <li><strong>Thẻ khách:</strong> Dành cho người quên thẻ (cần cọc CCCD).</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.2s;">
+                <div class="card-icon"><i class="fa-solid fa-utensils"></i></div>
+                <h3>2. Tiện ích & Sinh hoạt</h3>
+                <p>Buổi đào tạo diễn ra tại hội trường lầu 1 và lầu 2.</p>
+                <ul>
+                    <li><strong>Nhà hàng (Lầu 8):</strong> Học viên được giảm giá suất ăn từ 60.000đ xuống 40.000đ. Cần tự dọn dẹp sau khi ăn.</li>
+                    <li><strong>Quy định nghiêm ngặt:</strong> Tuyệt đối không hút thuốc, không mang thức ăn có mùi vào phòng máy lạnh.</li>
+                    <li><strong>Điện thoại:</strong> Luôn ở chế độ im lặng trong giờ học.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.3s;">
+                <div class="card-icon"><i class="fa-solid fa-stairs"></i></div>
+                <h3>3. Lộ trình Học viên -> Chuyên viên</h3>
+                <p>Hoàn thành 4 tiêu chí trong 1 tuần để nhận thẻ Chuyên viên:</p>
+                <ul>
+                    <li><strong>Học trực tiếp:</strong> "Nội quy văn hóa" (Chiều T2) & "Pháp lý" (Sáng T4).</li>
+                    <li><strong>Học online:</strong> Hoàn thành trên App đỏ.</li>
+                    <li><strong>Thử thách Nam Linh:</strong> Thực hành đăng tin MXH.</li>
+                    <li><strong>Thi sát hạch:</strong> Trắc nghiệm trên App (Chiều T6).</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.4s;">
+                <div class="card-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                <h3>4. Chia sẻ từ GĐ Đào tạo</h3>
+                <p>Giám đốc Khoa (SN 1987) - Lãnh đạo Khối Phát Lộc chia sẻ bí quyết giúp chi nhánh đạt Top 1:</p>
+                <ul>
+                    <li><strong>Sự tập trung:</strong> Hạn chế ngồi trà đá tán gẫu, tập trung 100% vào việc đăng tin tìm khách.</li>
+                    <li><strong>Sự cần cù:</strong> Làm việc 16 tiếng/ngày, nỗ lực gấp đôi người bình thường để tạo đột phá.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.5s;">
+                <div class="card-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                <h3>5. Tư duy & Động lực nghề</h3>
+                <p>Hệ quy chiếu: <strong>Hành động = Mục tiêu</strong> (Kỷ luật là dấu bằng).</p>
+                <ul>
+                    <li><strong>Tại sao chọn BĐS?</strong> 99% tỷ phú đều dùng BĐS nhân tài sản. Mọi nhu cầu đời người đều gắn với BĐS.</li>
+                    <li><strong>Tại sao chọn nghề Môi giới?</strong> Khởi nghiệp vốn 0 đồng, thời gian tự do, môi trường tiếp xúc với người giàu và tinh hoa xã hội.</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="card">
-            <h3><i class="fa-solid fa-route"></i> 3. Lộ trình từ Học viên lên Chuyên viên</h3>
-            <p>Để trở thành chuyên viên chính thức, học viên cần hoàn thành 4 tiêu chí trong vòng một tuần:</p>
-            <ul>
-                <li><strong>Tham gia trực tiếp:</strong> Buổi "Nội quy văn hóa" (chiều thứ Hai) và buổi "Pháp lý trong giao dịch" (sáng thứ Tư).</li>
-                <li><strong>Học online:</strong> Hoàn thành các chuyên đề còn lại trên app màu đỏ.</li>
-                <li><strong>Thử thách Nam Linh:</strong> Thực hành đăng tin tìm kiếm khách hàng trên các nền tảng mạng xã hội theo hướng dẫn của trợ lý.</li>
-                <li><strong>Thi sát hạch:</strong> Diễn ra vào chiều thứ Sáu dưới hình thức trắc nghiệm trên app (đề đóng).</li>
-            </ul>
-            <p>Sau khi đạt các tiêu chí, học viên tham gia buổi chia sẻ định hướng vào sáng thứ Bảy và được đổi từ thẻ học viên sang thẻ chuyên viên.</p>
+        <div class="section-header animate-up" style="margin-top: 60px;">
+            <h2 class="section-title">Phần 2: Kiến thức & Cơ chế chuyên sâu</h2>
         </div>
 
-        <div class="card">
-            <h3><i class="fa-solid fa-user-tie"></i> 4. Chia sẻ từ GĐ Đào tạo Nguyễn Học Tấn Khoa</h3>
-            <p>Giám đốc Khoa (sinh năm 1987), lãnh đạo khối Phát Lộc và chi nhánh Bắc Sài Gòn, là người trực tiếp đứng lớp. Ông chia sẻ về quá trình thăng tiến nhanh chóng của khối Phát Lộc (đạt Top 1 nhiều năm liền) và hai kim chỉ nam làm việc:</p>
-            <ul>
-                <li><strong>Sự tập trung:</strong> Phê phán thói quen ngồi trà nước quá lâu mà không tập trung đăng tin tìm khách.</li>
-                <li><strong>Sự cần cù:</strong> Nhấn mạnh phương châm làm việc nhiều giờ hơn người khác (16 tiếng/ngày) để đạt kết quả đột phá.</li>
-            </ul>
+        <div class="card-grid">
+            <div class="card animate-up" style="transition-delay: 0.1s;">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>1. Mô hình Hoa hồng 3%</h3>
+                <p>Thiên Khôi tiên phong đưa mức hoa hồng 3% chuẩn quốc tế vào Việt Nam.</p>
+                <ul>
+                    <li>Giai đoạn đầu bị phản đối, nhưng hiện 70% nhà đầu tư Sài Gòn đã chấp nhận.</li>
+                    <li>Lý do: Giúp chủ nhà thanh khoản tài sản cực nhanh và chốt được giá tốt.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.2s;">
+                <div class="card-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
+                <h3>2. Pháp lý & Minh bạch</h3>
+                <ul>
+                    <li><strong>Chứng chỉ:</strong> Đơn vị tư nhân duy nhất được cấp phép đào tạo môi giới.</li>
+                    <li><strong>Sàn Online (6/2026):</strong> Nhà nước thí điểm định danh và giao dịch qua sàn tại 5 thành phố lớn.</li>
+                    <li><strong>Đóng thuế:</strong> Đóng thuế TNCN giúp nghề được bảo vệ, xóa bỏ định kiến "cò đất".</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.3s;">
+                <div class="card-icon"><i class="fa-solid fa-city"></i></div>
+                <h3>3. Ưu điểm Phân khúc Nhà phố</h3>
+                <p>Khác biệt lớn so với bán Dự án phân lô, căn hộ:</p>
+                <ul>
+                    <li><strong>Nhận tiền ngay:</strong> 50% khi cọc, 50% khi công chứng. Không lo bị chủ đầu tư giam hồng.</li>
+                    <li><strong>Nhu cầu thực:</strong> Giá trị tăng bền vững, không bị đóng băng như đất nền vùng ven.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.4s;">
+                <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>4. Hệ thống Kinh đô</h3>
+                <p>Cơ cấu gồm 3 bộ phận: Đầu chủ, Đầu khách, và Quản lý.</p>
+                <ul>
+                    <li><strong>Cơ chế Kinh đô:</strong> Tập hợp môi giới cùng khu vực để hỗ trợ chéo nhau (bất kể khác khối/phòng).</li>
+                    <li><strong>Với người mới:</strong> Chỉ cần tập trung "Đăng tin" và "Dẫn khách", phần đàm phán/pháp lý có Quản lý lo.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.5s;">
+                <div class="card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                <h3>5. Phân chia Hoa hồng (3%)</h3>
+                <p>Chia làm 4 phần bằng nhau (Mỗi bên đóng phí VP riêng):</p>
+                <ul>
+                    <li><strong>Đầu khách (Chuyên viên):</strong> Nhận 2 phần. Sau trừ phí VP thực nhận 35.5% tổng hoa hồng.</li>
+                    <li><strong>Đầu chủ:</strong> Nhận 1 phần.</li>
+                    <li><strong>Quản lý:</strong> Nhận 1 phần.</li>
+                    <li><strong>Nguồn HĐTĐ:</strong> Cắt lại 6% nếu vụ chốt lấy nguồn từ Hệ thống thẩm định.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.6s;">
+                <div class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h3>6. Công cụ & Quyền lợi nhân văn</h3>
+                <ul>
+                    <li><strong>Công nghệ:</strong> App định giá 3 triệu USD tích hợp AI.</li>
+                    <li><strong>Bảo vệ:</strong> Ban Bổ an hỗ trợ đòi hoa hồng. Quỹ bảo hiểm 10-20tr cho vụ mất phí.</li>
+                    <li><strong>Bảo hiểm:</strong> Hoàn trả toàn bộ phí VP cho gia đình (lên tới 2 tỷ) nếu nhân sự rủi ro tử vong.</li>
+                </ul>
+            </div>
+
+            <div class="card animate-up" style="transition-delay: 0.7s;">
+                <div class="card-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <h3>7. Văn hóa làm việc</h3>
+                <ul>
+                    <li><strong>Giao tiếp chuẩn mực:</strong> Tuyệt đối không văng tục, chửi bậy.</li>
+                    <li><strong>Công nghệ:</strong> Làm việc 100% qua Facebook/Messenger (Không dùng Zalo).</li>
+                    <li><strong>Tầm nhìn:</strong> Đỉnh cao của môi giới là tích lũy để trở thành nhà đầu tư săn hàng "ngợp".</li>
+                </ul>
+            </div>
         </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-lightbulb"></i> 5. Tư duy và động lực trong nghề Bất động sản</h3>
-            <p>Diễn giả đưa ra hệ quy chiếu <strong>X = Y</strong>, trong đó X là <em>hành động</em>, Y là <em>mục tiêu</em> (tiền tài, địa vị, tự do) và dấu bằng là <em>sự kỷ luật</em>.</p>
-            <p><strong>Tại sao chọn Bất động sản?</strong></p>
-            <ul>
-                <li><strong>Tiền bạc:</strong> Là công cụ thực hiện ước mơ, báo hiếu và chăm lo gia đình.</li>
-                <li><strong>Sự liên quan:</strong> Mọi giai đoạn đời người từ khi sinh ra, đi học (thuê trọ), lập gia đình đến khi làm chủ hay đầu tư đều gắn liền với bất động sản.</li>
-                <li><strong>Cơ hội giàu có:</strong> 99% các tỷ phú thế giới đều dùng bất động sản để nhân tài sản.</li>
-            </ul>
-            <p><strong>Tại sao chọn nghề Môi giới?</strong></p>
-            <ul>
-                <li><strong>Môi trường:</strong> Được tiếp xúc với người giàu, người giỏi và học hỏi từ nhiều tầng lớp xã hội.</li>
-                <li><strong>Khởi nghiệp vốn 0 đồng:</strong> Dẫn chứng các tấm gương từ môi giới đi lên như Chủ tịch Tập đoàn Đất Xanh, Chủ tịch CenGroup (Shark Hưng) và đặc biệt là Chủ tịch Nguyễn Thành Dũng của Thiên Khôi.</li>
-                <li><strong>Tự do thời gian:</strong> Không bị kiểm soát chặt chẽ như làm công ăn lương, có thể chủ động chăm sóc gia đình hoặc làm việc từ xa.</li>
-            </ul>
-        </div>
-
-        <h2 class="section-title" style="margin-top: 20px;">Phần 2: Kiến thức & Cơ chế chuyên sâu</h2>
-        <p style="margin-bottom: 25px; color: #555;"><em>(Nội dung chi tiết do Giám đốc đào tạo Nguyễn Ngọc Tuấn Khoa chia sẻ)</em></p>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-chart-pie"></i> 1. Mô hình hoa hồng và sự thay đổi của thị trường</h3>
-            <p>Tại Việt Nam, đặc biệt là Sài Gòn, người dân vốn quen với mức hoa hồng môi giới là 1% hoặc tối đa 2% cho các tài sản dưới 2 tỷ đồng tại vùng ven. Thiên Khôi là một trong những đơn vị đầu tiên áp dụng <strong>mô hình hoa hồng 3%</strong> từ thế giới vào Việt Nam.</p>
-            <p>Dù ban đầu gặp nhiều phản ứng trái chiều và bị coi là "ác nhân thất đức", nhưng đến nay, hơn 70% các nhà đầu tư tại Sài Gòn đã chấp nhận mức phí này vì Thiên Khôi giúp họ thanh khoản tài sản nhanh và được giá.</p>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-scale-balanced"></i> 2. Pháp lý và xu hướng minh bạch hóa</h3>
-            <ul>
-                <li><strong>Chứng chỉ hành nghề:</strong> Thiên Khôi là đơn vị tư nhân duy nhất tại Việt Nam hiện nay được phép đào tạo và cấp chứng chỉ hành nghề môi giới.</li>
-                <li><strong>Sàn giao dịch online của Nhà nước:</strong> Dự kiến từ tháng 6/2026, Nhà nước sẽ thí điểm định danh bất động sản và bắt buộc giao dịch qua sàn online tại 5 thành phố lớn (Hà Nội, Sài Gòn, Đà Nẵng, Hải Phòng, Quảng Ninh) để minh bạch giá cả và đóng thuế.</li>
-                <li><strong>Thuế và địa vị nghề nghiệp:</strong> Việc đóng thuế TNCN (dự kiến khoảng 10% hoặc thông qua mã code định danh) sẽ giúp nghề môi giới được Nhà nước bảo vệ, xóa bỏ định kiến về từ "cò" và ngăn chặn tình trạng khách - chủ "đi đêm" (luồn cò).</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-house-chimney"></i> 3. Ưu điểm của phân khúc Nhà phố so với Dự án</h3>
-            <p>Diễn giả nhấn mạnh sự khác biệt giữa làm nhà phố và các dự án phân lô, căn hộ:</p>
-            <ul>
-                <li><strong>Dòng tiền:</strong> Tại các dự án lớn, môi giới thường bị nợ hoa hồng lâu hoặc trả theo tiến độ đóng tiền của khách, thậm chí có trường hợp nợ hàng tỷ đồng không trả được.</li>
-                <li><strong>Hoa hồng tại Thiên Khôi:</strong> Được nhận ngay theo nguyên tắc "tiền trao cháo múc": nhận 50% khi khách đặt cọc và 50% còn lại khi ra công chứng.</li>
-                <li><strong>Nhu cầu thực:</strong> Nhà phố tại Sài Gòn luôn có nhu cầu mua để ở và giá trị tăng dần đều, không bị số ảo hay đóng băng như đất nền vùng ven.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-sitemap"></i> 4. Cơ cấu tổ chức và Hệ thống Kinh đô</h3>
-            <p>Mô hình hoạt động của Thiên Khôi gồm ba bộ phận chính: <strong>Đầu chủ</strong> (tìm nguồn hàng), <strong>Đầu khách</strong> (tìm khách mua) và <strong>Bộ phận Quản lý</strong>.</p>
-            <ul>
-                <li><strong>Khối/Phòng kinh doanh:</strong> Phòng dưới 150 nhân sự do Trưởng phòng quản lý; trên 150 nhân sự gọi là Khối do Giám đốc khối điều hành.</li>
-                <li><strong>Cơ chế Kinh đô:</strong> Đây là điểm đặc biệt của Thiên Khôi, tập hợp các môi giới làm chung một khu vực (không phân biệt khối phòng) để hỗ trợ nhau. Kinh đô trên 250 người gọi là Giám đốc khu vực, trên 500 người là Giám đốc vùng.</li>
-                <li><strong>Hỗ trợ chuyên viên mới:</strong> Học viên mới chỉ cần tập trung vào 2 việc: <em>Đăng tin</em> và <em>Dẫn khách</em>; các khâu pháp lý, thương lượng sẽ có đội ngũ quản lý hỗ trợ.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-coins"></i> 5. Cơ chế phân chia hoa hồng cụ thể</h3>
-            <p>Mức hoa hồng chuẩn là <strong>3% giá trị tài sản</strong> (tối thiểu 100 triệu đồng). Số tiền thực thu được chia thành 4 phần bằng nhau:</p>
-            <ul>
-                <li><strong>Đầu khách (Chuyên viên):</strong> Nhận 2 phần (50%), sau khi đóng phí văn phòng 29% thì thực nhận về túi là 35,5% tổng hoa hồng (tương đương 1,065% giá trị căn nhà).</li>
-                <li><strong>Đầu chủ:</strong> Nhận 1 phần (25%), đóng phí văn phòng 18%.</li>
-                <li><strong>Quản lý (Giám đốc/Trưởng phòng):</strong> Nhận 1 phần (25%), đóng phí văn phòng 27%.</li>
-                <li><strong>Nguồn hội đồng thẩm định:</strong> Nếu chuyên viên giới thiệu nguồn nhà cho đầu chủ qua hệ thống này, họ sẽ được hưởng 6% trên tổng hoa hồng khi vụ chốt thành công.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-shield-heart"></i> 6. Công cụ hỗ trợ và Quyền lợi nhân văn</h3>
-            <ul>
-                <li><strong>Công nghệ:</strong> Thiên Khôi đầu tư App (trị giá 3 triệu USD) tích hợp AI để gợi ý nhà phù hợp cho khách hàng.</li>
-                <li><strong>Tiện ích:</strong> Nhân sự được giảm giá 50% cà phê Thiên Khôi, giảm giá suất ăn tại nhà hàng công ty (từ 60k còn 40k) và miễn phí cơm trưa khi có vụ chốt.</li>
-                <li><strong>Bảo vệ môi giới:</strong> Có bộ phận Bổ an hỗ trợ thu hồi hoa hồng nếu bị chủ nhà nợ hoặc "luồn cò". Tập đoàn có quỹ bảo hiểm hỗ trợ từ 10 - 20 triệu đồng cho các vụ bị mất hoa hồng dù công ty chưa thu được tiền.</li>
-                <li><strong>Bảo hiểm nhân thọ:</strong> Trong trường hợp nhân sự tử vong, công ty sẽ hoàn trả toàn bộ phí văn phòng đã đóng cho gia đình (tối đa lên đến 2 tỷ đồng tùy thâm niên).</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h3><i class="fa-solid fa-handshake"></i> 7. Văn hóa và Quy định tương tác</h3>
-            <ul>
-                <li><strong>Giao tiếp:</strong> Tuyệt đối không nói tục chửi bậy, nếu vi phạm sẽ bị dừng hợp tác.</li>
-                <li><strong>Kênh làm việc:</strong> Thiên Khôi không dùng Zalo, tất cả tương tác, kết bạn và làm việc đều qua Facebook và Messenger.</li>
-                <li><strong>Định hướng:</strong> Đỉnh cao của nghề môi giới là trở thành nhà đầu tư. Chuyên viên được khuyến khích tích lũy vốn và kinh nghiệm để tự đầu tư các bất động sản "ngợp" giá rẻ.</li>
-            </ul>
-        </div>
-
     </div>
 
     <footer>
-        <p>&copy; Trang thông tin tổng hợp nội dung đào tạo nội bộ. Thiết kế trình bày chuyên nghiệp.</p>
+        <p>Thiết kế giao diện hiện đại <i class="fa-solid fa-heart"></i> Tối ưu hóa trải nghiệm người dùng</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hiệu ứng Header thu nhỏ khi cuộn
+            const header = document.getElementById("header");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.style.padding = "10px 20px";
+                    header.style.background = "rgba(11, 36, 71, 0.95)";
+                } else {
+                    header.style.padding = "20px";
+                    header.style.background = "rgba(11, 36, 71, 0.9)";
+                }
+            });
+
+            // Intersection Observer cho hiệu ứng Fade-in-up
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target); // Chỉ chạy 1 lần
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
 
 </body>
 </html>
