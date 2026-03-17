@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện hình ảnh Thiên Khôi</title>
+    <style>
+        /* CSS Cơ bản và Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Lưới hiển thị hình ảnh (Grid) - Tương thích mọi thiết bị */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Thiết kế từng thẻ hình ảnh (Card) */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        .caption {
+            padding: 15px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            color: #555;
+            background: #fff;
+            border-top: 1px solid #f0f0f0;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.4;
+        }
+
+        /* Giao diện xem ảnh phóng to (Lightbox) */
+        .lightbox {
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+            z-index: 1001;
+        }
+
+        .close:hover {
+            color: #ff4757;
+        }
+
+        /* Tinh chỉnh cho màn hình điện thoại nhỏ */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 22px;
+                margin-bottom: 25px;
+            }
+            .card {
+                border-radius: 10px;
+            }
+            .close {
+                top: 10px;
+                right: 20px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Thư Viện Tài Liệu & Văn Hóa</h1>
+        
+        <div class="gallery">
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/nghe-moi-gioi-bat-dong-san-tren-the-gioi.webp" alt="Nghề môi giới bất động sản trên thế giới">
+                </div>
+                <div class="caption">Nghề môi giới bất động sản trên thế giới</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/3-co-hoi-phat-trien-tai-thien-khoi.webp" alt="3 cơ hội phát triển tại Thiên Khôi">
+                </div>
+                <div class="caption">3 cơ hội phát triển tại Thiên Khôi</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/cac-nguon-thu-nhap-cua-dau-khach.webp" alt="Các nguồn thu nhập của Đầu Khách">
+                </div>
+                <div class="caption">Các nguồn thu nhập của Đầu Khách</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/cac-tang-nhan-su-ho-tro-dau-khach.webp" alt="Các tầng nhân sự hỗ trợ Đầu Khách">
+                </div>
+                <div class="caption">Các tầng nhân sự hỗ trợ Đầu Khách</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/he-sinh-thai-thien-khoi-group.webp" alt="Hệ sinh thái Thiên Khôi Group">
+                </div>
+                <div class="caption">Hệ sinh thái Thiên Khôi Group</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/khac-biet-giua-thuong-mai-dien-tu-va-san-giao-dich-bat-dong-san.webp" alt="Khác biệt giữa TMĐT và Sàn giao dịch BĐS">
+                </div>
+                <div class="caption">Khác biệt giữa TMĐT và Sàn giao dịch BĐS</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/mau-tao-email.webp" alt="Mẫu tạo email">
+                </div>
+                <div class="caption">Mẫu tạo email</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/nhung-con-so-thien-khoi-group.webp" alt="Những con số Thiên Khôi Group">
+                </div>
+                <div class="caption">Những con số Thiên Khôi Group</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/quy-trinh-tuong-tac-khi-dan-khach.webp" alt="Quy trình tương tác khi dẫn khách">
+                </div>
+                <div class="caption">Quy trình tương tác khi dẫn khách</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/thien-khoi-group-2.webp" alt="Thiên Khôi Group 2">
+                </div>
+                <div class="caption">Thiên Khôi Group 2</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/thien-khoi-group-khoi-phong-va-kinh-do.webp" alt="Thiên Khôi Group - Khối phòng và Kinh đô">
+                </div>
+                <div class="caption">Thiên Khôi Group - Khối phòng và Kinh đô</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-2.webp" alt="Văn hóa chung của Thiên Khôi (Phần 2)">
+                </div>
+                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 2)</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-3.webp" alt="Văn hóa chung của Thiên Khôi (Phần 3)">
+                </div>
+                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 3)</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-4.webp" alt="Văn hóa chung của Thiên Khôi (Phần 4)">
+                </div>
+                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 4)</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-5.webp" alt="Văn hóa chung của Thiên Khôi (Phần 5)">
+                </div>
+                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 5)</div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi.webp" alt="Văn hóa chung của Thiên Khôi">
+                </div>
+                <div class="caption">Văn hóa chung của Thiên Khôi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" id="close-btn">&times;</span>
+        <img src="" alt="Ảnh phóng to" id="lightbox-img">
+    </div>
+
+    <script>
+        // Lấy các phần tử DOM
+        const cards = document.querySelectorAll('.card');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+
+        // Bắt sự kiện click vào mỗi thẻ ảnh
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const img = card.querySelector('img');
+                lightboxImg.src = img.src; // Lấy URL ảnh được click gán vào ảnh lightbox
+                lightbox.classList.add('active'); // Hiển thị lightbox
+                document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem ảnh
+            });
+        });
+
+        // Bắt sự kiện click vào nút Đóng
+        closeBtn.addEventListener('click', () => {
+            closeLightbox();
+        });
+
+        // Bắt sự kiện click ra ngoài vùng ảnh để đóng
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg && e.target !== closeBtn) {
+                closeLightbox();
+            }
+        });
+
+        // Hàm đóng lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+        }
+
+        // Bắt sự kiện nhấn phím ESC để đóng ảnh
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
