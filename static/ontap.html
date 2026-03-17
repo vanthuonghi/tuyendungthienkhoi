@@ -3,27 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư viện hình ảnh Thiên Khôi</title>
+    <title>Thư viện tài liệu & Văn hóa Thiên Khôi</title>
     <style>
-        /* CSS Cơ bản và Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* CSS Cơ bản */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f6;
             color: #333;
             padding: 20px;
         }
-
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
-
         h1 {
             text-align: center;
             margin-bottom: 40px;
@@ -34,248 +27,397 @@
             letter-spacing: 1px;
         }
 
-        /* Lưới hiển thị hình ảnh (Grid) - Tương thích mọi thiết bị */
+        /* Lưới hiển thị (Grid) */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
+            align-items: start;
         }
 
-        /* Thiết kế từng thẻ hình ảnh (Card) */
+        /* Thẻ Card */
         .card {
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
-
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
+        /* Khung hình ảnh */
         .img-container {
             width: 100%;
             height: 220px;
             overflow: hidden;
+            cursor: pointer;
+            position: relative;
         }
-
+        .img-container::after {
+            content: '🔍 Phóng to';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .img-container:hover::after { opacity: 1; }
         .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
+        .card:hover img { transform: scale(1.05); }
 
-        .card:hover img {
-            transform: scale(1.08);
-        }
-
-        .caption {
-            padding: 15px;
-            text-align: center;
-            font-size: 15px;
-            font-weight: 500;
-            color: #555;
-            background: #fff;
-            border-top: 1px solid #f0f0f0;
+        /* Khung nội dung mô tả */
+        .card-content {
+            padding: 20px;
             flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.4;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+            border-top: 1px solid #f0f0f0;
         }
+        .card-content h3 {
+            font-size: 17px;
+            color: #d32f2f;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .card-content ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        .card-content li { margin-bottom: 6px; }
+        .card-content p { margin-bottom: 8px; }
+        .highlight { font-weight: 600; color: #2c3e50; }
 
-        /* Giao diện xem ảnh phóng to (Lightbox) */
+        /* Bảng biểu (Table) */
+        .table-responsive { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 8px; text-align: left; }
+        th { background-color: #f8f9fa; color: #2c3e50; font-weight: 600;}
+
+        /* Lightbox (Phóng to ảnh) */
         .lightbox {
             visibility: hidden;
             opacity: 0;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-
-        .lightbox.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
+        .lightbox.active { visibility: visible; opacity: 1; }
         .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
+            max-width: 90%; max-height: 90vh;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             transform: scale(0.8);
             transition: transform 0.3s ease;
             object-fit: contain;
         }
-
-        .lightbox.active img {
-            transform: scale(1);
-        }
-
+        .lightbox.active img { transform: scale(1); }
         .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: color 0.2s;
-            z-index: 1001;
+            position: absolute; top: 20px; right: 30px;
+            color: #fff; font-size: 40px; cursor: pointer;
+            font-weight: bold; transition: color 0.2s; z-index: 1001;
         }
+        .close:hover { color: #ff4757; }
 
-        .close:hover {
-            color: #ff4757;
-        }
-
-        /* Tinh chỉnh cho màn hình điện thoại nhỏ */
+        /* Responsive Điện thoại */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 22px;
-                margin-bottom: 25px;
-            }
-            .card {
-                border-radius: 10px;
-            }
-            .close {
-                top: 10px;
-                right: 20px;
-                font-size: 35px;
-            }
+            h1 { font-size: 22px; margin-bottom: 25px; }
+            .card-content { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Thư Viện Tài Liệu & Văn Hóa</h1>
+        <h1>Thư Viện Tài Liệu & Văn Hóa Thiên Khôi</h1>
         
         <div class="gallery">
+            
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/nghe-moi-gioi-bat-dong-san-tren-the-gioi.webp" alt="Nghề môi giới bất động sản trên thế giới">
                 </div>
-                <div class="caption">Nghề môi giới bất động sản trên thế giới</div>
+                <div class="card-content">
+                    <h3>Nghề môi giới BĐS trên thế giới</h3>
+                    <ul>
+                        <li><span class="highlight">Hoa hồng môi giới:</span> Singapore (3%), Malaysia (3%), Nhật Bản (5%), Hàn Quốc (5%), Mỹ (5-7%).</li>
+                        <li>Môi giới cần chứng chỉ hành nghề và được luật pháp bảo vệ.</li>
+                        <li>Các giao dịch bắt buộc phải qua sàn.</li>
+                        <li>Thị trường Việt Nam đang ở giai đoạn quá độ, giàu tiềm năng và đang tiệm cận trình độ thế giới.</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/3-co-hoi-phat-trien-tai-thien-khoi.webp" alt="3 cơ hội phát triển tại Thiên Khôi">
                 </div>
-                <div class="caption">3 cơ hội phát triển tại Thiên Khôi</div>
+                <div class="card-content">
+                    <h3>3 Cơ hội phát triển tại Thiên Khôi</h3>
+                    <ul>
+                        <li><span class="highlight">Bán hàng:</span> Đầu khách, Đầu chủ.</li>
+                        <li><span class="highlight">Quản lý:</span> Đội trưởng/Nhóm trưởng, Trưởng khu vực, Giám đốc Vùng/Khu vực.</li>
+                        <li><span class="highlight">Nhà đầu tư:</span> Trưởng phòng, Giám đốc, Phó tổng; NĐT tham gia Thiên Khôi Invest; Cá nhân tự đầu tư riêng.</li>
+                    </ul>
+                    <p><span class="highlight">Thông điệp:</span> Trải nghiệm, khả năng tích lũy và cơ hội đầu tư.</p>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/cac-nguon-thu-nhap-cua-dau-khach.webp" alt="Các nguồn thu nhập của Đầu Khách">
                 </div>
-                <div class="caption">Các nguồn thu nhập của Đầu Khách</div>
+                <div class="card-content">
+                    <h3>Các nguồn thu nhập của 1 Đầu khách</h3>
+                    <ul>
+                        <li>Với 100 triệu Hoa hồng, Đầu khách nhận về 35,5 triệu.</li>
+                        <li>6% nguồn nhà Hội đồng Thẩm định chốt thành công.</li>
+                        <li><span class="highlight">Giới thiệu nhân sự:</span> 50% thu nhập Trưởng phòng tri ân trong 2 vụ đầu tiên.</li>
+                        <li>Đội trưởng, Nhóm trưởng (thành viên chốt tốt, văn hóa chuẩn, hăng hái giúp đỡ) có thêm thu nhập khi hỗ trợ khối/phòng/kinh đô chốt nhà.</li>
+                        <li>Thưởng thành viên có công làm sạch môi trường (với bằng chứng minh bạch): 10 triệu.</li>
+                        <li>Cơ hội thu nhập từ việc gửi nguồn vào Thiên Khôi Invest.</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/cac-tang-nhan-su-ho-tro-dau-khach.webp" alt="Các tầng nhân sự hỗ trợ Đầu Khách">
                 </div>
-                <div class="caption">Các tầng nhân sự hỗ trợ Đầu Khách</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/he-sinh-thai-thien-khoi-group.webp" alt="Hệ sinh thái Thiên Khôi Group">
+                <div class="card-content">
+                    <h3>Các tầng nhân sự hỗ trợ Đầu khách</h3>
+                    <ul>
+                        <li>Trợ lý khối/phòng (1 tuần học việc).</li>
+                        <li>Đội trưởng, Nhóm trưởng.</li>
+                        <li>Trưởng phòng.</li>
+                        <li>Giám đốc/Trưởng khu vực.</li>
+                        <li>Giám đốc.</li>
+                    </ul>
                 </div>
-                <div class="caption">Hệ sinh thái Thiên Khôi Group</div>
             </div>
 
-            <div class="card">
-                <div class="img-container">
+            <div class="card" style="grid-column: 1 / -1;"> <div class="img-container" style="height: 350px;">
                     <img src="https://img.speedreading.vn/khac-biet-giua-thuong-mai-dien-tu-va-san-giao-dich-bat-dong-san.webp" alt="Khác biệt giữa TMĐT và Sàn giao dịch BĐS">
                 </div>
-                <div class="caption">Khác biệt giữa TMĐT và Sàn giao dịch BĐS</div>
+                <div class="card-content">
+                    <h3>So sánh Thương mại điện tử và Sàn giao dịch Bất động sản</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Đặc điểm</th>
+                                    <th>Lazada/Shopee</th>
+                                    <th>Thiên Khôi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Mô hình</strong></td>
+                                    <td>Sàn giao dịch TMĐT</td>
+                                    <td>Sàn giao dịch BĐS điện tử</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lĩnh vực</strong></td>
+                                    <td>Ứng dụng mua sắm Online</td>
+                                    <td>Bất động sản</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Đối tượng kết nối</strong></td>
+                                    <td>Doanh nghiệp và người tiêu dùng</td>
+                                    <td>Môi giới, người mua và người bán</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Công cụ hỗ trợ</strong></td>
+                                    <td>App Lazada, Shopee</td>
+                                    <td>App Thiên Khôi, hệ sinh thái Thiên Khôi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Chủ thể chính</strong></td>
+                                    <td>Hệ thống hậu cần, Seller Center, Shipper</td>
+                                    <td>Môi giới công nghệ (Đầu chủ/khách), Nhân sự công nghệ</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vai trò</strong></td>
+                                    <td>Tối ưu app, phân phối sản phẩm, quảng cáo</td>
+                                    <td>Tối ưu app, cung cấp công cụ tìm kiếm, mua bán, ký gửi</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nguồn thu</strong></td>
+                                    <td>% hoa hồng từ sản phẩm bán được</td>
+                                    <td>(% tỷ lệ) x (Giá trị giao dịch)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/mau-tao-email.webp" alt="Mẫu tạo email">
                 </div>
-                <div class="caption">Mẫu tạo email</div>
+                <div class="card-content">
+                    <h3>Mẫu tạo Gmail</h3>
+                    <p><span class="highlight">Cú pháp:</span><br> &lt;Tên&gt;&lt;Năm sinh&gt;.&lt;khối/phòng&gt;.&lt;thienkhoihcm&gt;@gmail.com</p>
+                    <p><span class="highlight">Ví dụ:</span><br> hoang96.tinhanh.thienkhoihcm@gmail.com</p>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/nhung-con-so-thien-khoi-group.webp" alt="Những con số Thiên Khôi Group">
                 </div>
-                <div class="caption">Những con số Thiên Khôi Group</div>
+                <div class="card-content">
+                    <h3>Những con số về Thiên Khôi Group</h3>
+                    <ul>
+                        <li><strong>40.000</strong> Nhân sự.</li>
+                        <li><strong>1.676</strong> Lãnh đạo và Quản lý các cấp.</li>
+                        <li>Hơn <strong>10.000</strong> BĐS giao dịch mỗi năm.</li>
+                        <li>Thanh khoản hơn <strong>160.000 tỷ</strong> VNĐ.</li>
+                    </ul>
+                    <p><span class="highlight">Phương châm:</span> Kết nối thông tin Dễ dàng - Nhanh chóng - Chính xác.</p>
+                </div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/quy-trinh-tuong-tac-khi-dan-khach.webp" alt="Quy trình tương tác khi dẫn khách">
                 </div>
-                <div class="caption">Quy trình tương tác khi dẫn khách</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/thien-khoi-group-2.webp" alt="Thiên Khôi Group 2">
+                <div class="card-content">
+                    <h3>Quy trình tương tác khi dẫn khách</h3>
+                    <p style="text-align: center; font-weight: bold; color: #d32f2f; margin-top: 10px;">
+                        Ký phiếu ➔ Dẫn khách ➔ Báo cáo Đầu chủ & Báo cáo về App/Web
+                    </p>
                 </div>
-                <div class="caption">Thiên Khôi Group 2</div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/thien-khoi-group-khoi-phong-va-kinh-do.webp" alt="Thiên Khôi Group - Khối phòng và Kinh đô">
                 </div>
-                <div class="caption">Thiên Khôi Group - Khối phòng và Kinh đô</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-2.webp" alt="Văn hóa chung của Thiên Khôi (Phần 2)">
+                <div class="card-content">
+                    <h3>Quy mô Khối phòng và Kinh đô</h3>
+                    <ul>
+                        <li><span class="highlight">Hà Nội:</span> 374 Khối/Phòng kinh doanh; 113 Kinh đô.</li>
+                        <li><span class="highlight">Tp. HCM:</span> 165 Khối/Phòng kinh doanh; 50 Kinh đô.</li>
+                    </ul>
                 </div>
-                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 2)</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-3.webp" alt="Văn hóa chung của Thiên Khôi (Phần 3)">
-                </div>
-                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 3)</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-4.webp" alt="Văn hóa chung của Thiên Khôi (Phần 4)">
-                </div>
-                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 4)</div>
-            </div>
-
-            <div class="card">
-                <div class="img-container">
-                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-5.webp" alt="Văn hóa chung của Thiên Khôi (Phần 5)">
-                </div>
-                <div class="caption">Văn hóa chung của Thiên Khôi (Phần 5)</div>
             </div>
 
             <div class="card">
                 <div class="img-container">
                     <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi.webp" alt="Văn hóa chung của Thiên Khôi">
                 </div>
-                <div class="caption">Văn hóa chung của Thiên Khôi</div>
+                <div class="card-content">
+                    <h3>Văn hóa Giao tiếp</h3>
+                    <ul>
+                        <li>Thành viên đến sau chủ động chào và bắt tay người đến trước (ưu tiên theo tước vị cao nhất).</li>
+                        <li>Lễ phép với thành viên lớn tuổi hơn; không nói tục, chửi bậy.</li>
+                        <li>Chỉ ngắt điện thoại khi hai bên đã nói xong lời chào.</li>
+                        <li>Sử dụng ngôn ngữ văn minh, hào sảng, tích cực.</li>
+                    </ul>
+                </div>
             </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-2.webp" alt="Văn hóa chung của Thiên Khôi (Phần 2)">
+                </div>
+                <div class="card-content">
+                    <h3>Văn hóa khi họp</h3>
+                    <ul>
+                        <li>Chỉ vắng họp khi có lịch cọc, công chứng hoặc lý do bất khả kháng.</li>
+                        <li>Vỗ tay theo nhịp của chủ tọa (bắt đầu và kết thúc sau chủ tọa).</li>
+                        <li>Giơ tay và chỉ phát biểu khi chủ tọa mời; chủ tọa có quyền ngắt lời hoặc mời ra ngoài.</li>
+                        <li>Để điện thoại im lặng, hạn chế ra vào.</li>
+                        <li>Thu dọn bàn ghế và làm đẹp phòng họp sau khi kết thúc.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-3.webp" alt="Văn hóa chung của Thiên Khôi (Phần 3)">
+                </div>
+                <div class="card-content">
+                    <h3>Tương tác Facebook: Tên & Ảnh đại diện</h3>
+                    <ul>
+                        <li><span class="highlight">Tên:</span> Phải có họ và tên đúng thứ tự trên CCCD (Ví dụ: Đỗ Nam Trung).</li>
+                        <li><span class="highlight">Ảnh đại diện:</span> Ảnh chính chủ, rõ mặt, không kính râm, không chụp chung với người cùng giới.</li>
+                        <li>Nếu chưa đổi được tên chính, phải đặt biệt danh là họ tên đầy đủ bên cạnh.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-4.webp" alt="Văn hóa chung của Thiên Khôi (Phần 4)">
+                </div>
+                <div class="card-content">
+                    <h3>Tương tác Facebook: Kết bạn</h3>
+                    <ul>
+                        <li>Cần kết bạn trước khi tương tác công việc.</li>
+                        <li>Gửi lời mời kèm inbox giới thiệu theo mẫu, chuẩn chính tả, không viết tắt.</li>
+                    </ul>
+                    <p><span class="highlight">Mẫu cú pháp:</span><br> "Tôi, Tước vị Họ tên đầy đủ theo CCCD, Năm sinh, Quê quán, Khối/phòng, Kinh đô, Số điện thoại, Tự do." <br><em>(Học viên không cần ghi Kinh đô)</em>.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/van-hoa-chung-cua-thien-khoi-5.webp" alt="Văn hóa chung của Thiên Khôi (Phần 5)">
+                </div>
+                <div class="card-content">
+                    <h3>Văn hóa về Thời gian & Thẻ thành viên</h3>
+                    <ul>
+                        <li><span class="highlight">Thời gian:</span> Giờ làm việc (8:00 - 17:30), Giờ giới nghiêm (13:00 - 13:30). Yêu cầu luôn đúng giờ.</li>
+                        <li><span class="highlight">Thẻ thành viên:</span> Phải đeo thẻ khi ra vào trụ sở. Thành viên có quyền mời người không đeo thẻ ra ngoài.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/he-sinh-thai-thien-khoi-group.webp" alt="Hệ sinh thái Thiên Khôi Group">
+                </div>
+                <div class="card-content">
+                    <h3>Hệ sinh thái Thiên Khôi Group</h3>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img-container">
+                    <img src="https://img.speedreading.vn/thien-khoi-group-2.webp" alt="Thiên Khôi Group 2">
+                </div>
+                <div class="card-content">
+                    <h3>Tổng quan Thiên Khôi Group</h3>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -285,41 +427,30 @@
     </div>
 
     <script>
-        // Lấy các phần tử DOM
-        const cards = document.querySelectorAll('.card');
+        const imgContainers = document.querySelectorAll('.img-container');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.getElementById('close-btn');
 
-        // Bắt sự kiện click vào mỗi thẻ ảnh
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const img = card.querySelector('img');
-                lightboxImg.src = img.src; // Lấy URL ảnh được click gán vào ảnh lightbox
-                lightbox.classList.add('active'); // Hiển thị lightbox
-                document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem ảnh
+        imgContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const img = container.querySelector('img');
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        // Bắt sự kiện click vào nút Đóng
-        closeBtn.addEventListener('click', () => {
-            closeLightbox();
-        });
-
-        // Bắt sự kiện click ra ngoài vùng ảnh để đóng
+        closeBtn.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImg && e.target !== closeBtn) {
-                closeLightbox();
-            }
+            if (e.target !== lightboxImg && e.target !== closeBtn) closeLightbox();
         });
 
-        // Hàm đóng lightbox
         function closeLightbox() {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+            document.body.style.overflow = 'auto';
         }
 
-        // Bắt sự kiện nhấn phím ESC để đóng ảnh
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape" && lightbox.classList.contains('active')) {
                 closeLightbox();
